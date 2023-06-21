@@ -6,7 +6,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
+    <!-- includo funzioni -->
     <?php include "functions.php"; ?>
+
+    <!-- open session php -->
+    <?php session_start() ?>
 
     <title>Password Generator</title>
 </head>
@@ -20,9 +24,16 @@
     </div>
         <div class="container text-center mt-5 mb-5">
             <?php
-                echo $passLength == null
-                ? "<h5>Nessun parametro valido inserito</h5>"
-                : "<h5>" . generaPassword($passLength) . "</h5>";
+                // echo $passLength == null
+                // ? "<h5>Nessun parametro valido inserito</h5>"
+                // : "<h5>" . generaPassword($passLength) . "</h5>";
+                if ($passLength == null) {
+                    echo "<h5>Nessun parametro valido inserito</h5>";
+                }else{
+                    $_SESSION["password"] = generaPassword($passLength);
+                    header('Location: password.php');
+                }
+
             ?>
         </div>
     <div class="container">
