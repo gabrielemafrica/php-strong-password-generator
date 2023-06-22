@@ -50,20 +50,38 @@ function generaPassword($passLength, $letters, $numbers, $symbols, $repeat){
 
     //genero password
 
-    for ($i = 0; $i < $passLength; $i++) {
-        $carattereCasuale = $tuttiCaratteri[random_int(0, strlen($tuttiCaratteri) - 1)];
 
-        // se non voglio ripetizioni
-        if (!$repeat) {
-            if (!strpos($password, $carattereCasuale)) {
-                $password .= $carattereCasuale;
-            }else{
-                $i--;
-            }
-        // se voglio ripetizioni
-        }else{
-            $password.= $carattereCasuale;
+    $tuttiCaratteriLength = strlen($tuttiCaratteri);
+
+    do {
+        $carattereCasuale = $tuttiCaratteri[random_int(0, $tuttiCaratteriLength - 1)];
+
+        if (!$repeat && strpos($password, $carattereCasuale) !== false) {
+            continue;
         }
-    }
+
+        $password .= $carattereCasuale;
+    } while (strlen($password) < $passLength);
+
+    // for ($i = 0; $i < $passLength; $i++) {
+    //     $carattereCasuale = $tuttiCaratteri[random_int(0, strlen($tuttiCaratteri) - 1)];
+
+        // // se non voglio ripetizioni
+        // if (!$repeat) {
+        //     if (!str_contains($password, $carattereCasuale)) {
+        //         $password .= $carattereCasuale;
+        //     }else{
+        //         $i--;
+        //     }
+        // // se voglio ripetizioni
+        // }else{
+        //     $password.= $carattereCasuale;
+        // }
+
+        //piu semplice
+    //     if (!$repeat || !str_contains($password, $carattereCasuale)) {
+    //         $password .= $carattereCasuale;
+    //     }
+    // }
     return $password;
 }
