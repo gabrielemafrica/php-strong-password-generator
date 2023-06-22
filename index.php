@@ -21,16 +21,32 @@
     <div class="container text-center">
         <h1>Password Generator</h1>
         <h2>Generate a new password</h2>
+        <?php echo "guardo repeat:"; ?>
+        <br />
+        <?php var_dump($repeat); ?>
+        <br />
+        <?php echo "guardo letters:"; ?>
+        <br />
+        <?php var_dump($letters); ?>
+        <br />
+        <?php echo "guardo numbers:"; ?>
+        <br />
+        <?php var_dump($numbers); ?>
+        <br />
+        <?php echo "guardo symbols:"; ?>
+        <br />
+        <?php var_dump($symbols); ?>
     </div>
         <div class="container text-center mt-5 mb-5">
             <?php
                 // echo $passLength == null
                 // ? "<h5>Nessun parametro valido inserito</h5>"
                 // : "<h5>" . generaPassword($passLength) . "</h5>";
-                if ($passLength == null) {
-                    echo "<h5>Nessun parametro valido inserito</h5>";
+                if ($passLength == null 
+                    || (!$letters && !$numbers && !$symbols)) {
+                    echo "<h5>Inserisci parametri validi</h5>";
                 }else{
-                    $_SESSION["password"] = generaPassword($passLength);
+                    $_SESSION["password"] = generaPassword($passLength, $letters, $numbers, $symbols, $repeat);
                     header('Location: password.php');
                 }
 
@@ -55,7 +71,7 @@
 
                         <!-- si -->
                         <div>
-                            <input type="radio" id="repeatY" name="repeat" value="true" >
+                            <input type="radio" id="repeatY" name="repeat" value="true" checked>
                             <label for="repeatY">si</label>
                         </div>
 
@@ -80,10 +96,12 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- bottoni -->
                 <div class="row">
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-primary btn-block">Invia</button>
-                        <button type="submit" class="btn btn-secondary btn-block">Annulla</button>
+                        <button type="reset" class="btn btn-secondary btn-block">Annulla</button>
                     </div>
     
             </div>
