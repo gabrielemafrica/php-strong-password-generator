@@ -51,12 +51,15 @@ function generaPassword($passLength, $letters, $numbers, $symbols, $repeat){
 
     for ($i = 0; $i < $passLength; $i++) {
         $carattereCasuale = $tuttiCaratteri[random_int(0, strlen($tuttiCaratteri) - 1)];
+
+        // se non voglio ripetizioni
         if (!$repeat) {
             if (!strpos($password, $carattereCasuale)) {
                 $password .= $carattereCasuale;
             }else{
                 $i--;
             }
+        // se voglio ripetizioni
         }else{
             $password.= $carattereCasuale;
         }
