@@ -27,6 +27,7 @@ function generaPassword($passLength, $letters, $numbers, $symbols, $repeat){
 
     //compongo la stringa con tutti i caratteri
     $tuttiCaratteri = '';
+
     // $tuttiCaratteri .= $letters ?? $caratteriMinuscoli . $caratteriMaiuscoli;
     // $tuttiCaratteri .= $numbers ?? $numeri;
     // $tuttiCaratteri .= $symbols ?? $simboli;
